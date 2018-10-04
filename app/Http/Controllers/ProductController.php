@@ -8,13 +8,27 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('permission::products.index')->only('index');
+        $this->middleware('permission::products.create')->only(['create', 'store']);
+        $this->middleware('permission::products.show')->only('show');
+        $this->middleware('permission::products.edit')->only(['edit', 'update']);
+        $this->middleware('permission::products.destroy')->only('destroy');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -24,7 +38,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +49,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -46,7 +60,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+
     }
 
     /**
@@ -57,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+
     }
 
     /**
@@ -69,7 +83,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+
     }
 
     /**
@@ -80,6 +94,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+
     }
 }

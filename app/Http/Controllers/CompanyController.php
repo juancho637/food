@@ -8,6 +8,20 @@ use Illuminate\Http\Request;
 class CompanyController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('permission::companies.index')->only('index');
+        $this->middleware('permission::companies.create')->only(['create', 'store']);
+        $this->middleware('permission::companies.show')->only('show');
+        $this->middleware('permission::companies.edit')->only(['edit', 'update']);
+        $this->middleware('permission::companies.destroy')->only('destroy');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

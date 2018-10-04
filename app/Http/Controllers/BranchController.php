@@ -8,13 +8,27 @@ use Illuminate\Http\Request;
 class BranchController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('permission::branches.index')->only('index');
+        $this->middleware('permission::branches.create')->only(['create', 'store']);
+        $this->middleware('permission::branches.show')->only('show');
+        $this->middleware('permission::branches.edit')->only(['edit', 'update']);
+        $this->middleware('permission::branches.destroy')->only('destroy');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('admin.branches.index');
     }
 
     /**
@@ -24,7 +38,7 @@ class BranchController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.branches.create');
     }
 
     /**
@@ -57,7 +71,7 @@ class BranchController extends Controller
      */
     public function edit(Branch $branch)
     {
-        //
+        return view('admin.branches.edit');
     }
 
     /**

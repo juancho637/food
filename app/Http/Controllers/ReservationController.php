@@ -8,6 +8,20 @@ use Illuminate\Http\Request;
 class ReservationController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('permission::reservations.index')->only('index');
+        $this->middleware('permission::reservations.create')->only(['create', 'store']);
+        $this->middleware('permission::reservations.show')->only('show');
+        $this->middleware('permission::reservations.edit')->only(['edit', 'update']);
+        $this->middleware('permission::reservations.destroy')->only('destroy');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -85,6 +85,7 @@
             </div> -->
             <!-- /.social-auth-links -->
 
+            <br>
             <a href="{{ route('password.request') }}">Restablecer contraseña</a>
             <br>
             <a href="{{ route('register') }}" class="text-center">Registrar una nueva empresa</a>

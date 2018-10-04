@@ -78,9 +78,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Main content -->
             <section class="content container-fluid">
-                @if(Auth::user()->password_change == false)
+                {{-- @if(Auth::user()->password_change == false)
                     <div class="alert alert-warning">Por favor por su seguridad cambiar la contraseña.</div>
-                @endif
+                @endif --}}
 
                 @if(session()->has('flash'))
                     <div class="alert alert-success">

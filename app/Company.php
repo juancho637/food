@@ -16,4 +16,11 @@ class Company extends Model
     public function branches(){
         return $this->hasMany(Branch::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users(){
+        return $this->hasMany(User::class);
+    }
 }
