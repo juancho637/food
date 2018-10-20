@@ -3,7 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * @property mixed branch
+ * @property mixed branch_id
+ */
 class Product extends Model
 {
     protected $fillable = [
@@ -27,5 +32,22 @@ class Product extends Model
      */
     public function reservations(){
         return $this->hasMany(Reservation::class);
+    }
+
+    public function scopeAllowed($query)
+    {
+        if (Auth::user()->isRole('admin')){
+            return $query->whereHas('branch', function ($query){
+                $query->whereHas('company', function ($query){
+                    $query->where('id', Auth::user()->company_id);
+                });
+            });
+        }
+
+        /*if (Auth::user()->isRole('su')){
+            return $query;
+        }*/
+
+        return $query;
     }
 }

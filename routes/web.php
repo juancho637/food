@@ -19,14 +19,20 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
-    Route::get('/', function () {
-        return redirect()->route('home');
-    });
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
+
     Route::resource('roles', 'RoleController');
+
     Route::resource('companies', 'CompanyController');
+    Route::resource('companies.branches', 'CompanyBranchController', ['only'=>['index']]);
+
     Route::resource('users', 'UserController');
+
     Route::resource('branches', 'BranchController');
+    Route::resource('branches.products', 'BranchProductController', ['only'=>['index']]);
+
     Route::resource('products', 'ProductController');
+
+    Route::resource('reservations', 'ReservationController');
 
 });

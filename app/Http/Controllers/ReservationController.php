@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Branch;
+use App\Company;
+use App\Product;
 use App\Reservation;
+use App\User;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -14,11 +18,11 @@ class ReservationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission::reservations.index')->only('index');
-        $this->middleware('permission::reservations.create')->only(['create', 'store']);
-        $this->middleware('permission::reservations.show')->only('show');
-        $this->middleware('permission::reservations.edit')->only(['edit', 'update']);
-        $this->middleware('permission::reservations.destroy')->only('destroy');
+        $this->middleware('permission:reservations.index')->only('index');
+        $this->middleware('permission:reservations.create')->only(['create', 'store']);
+        $this->middleware('permission:reservations.show')->only('show');
+        $this->middleware('permission:reservations.edit')->only(['edit', 'update']);
+        $this->middleware('permission:reservations.destroy')->only('destroy');
     }
 
     /**
@@ -28,7 +32,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = Reservation::allowed()->paginate();
+
+        return view('admin.reservations.index', compact('reservations'));
     }
 
     /**
@@ -38,7 +44,15 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::allowed()->pluck('name', 'id');
+        $branches = Branch::allowed()->pluck('name', 'id');
+        $products = Product::allowed()->pluck('name', 'id');
+        $users = User::allowed()->pluck('name', 'id');
+
+        return view(
+            'admin.reservations.create',
+            compact('companies', 'branches', 'products', 'users')
+        );
     }
 
     /**
@@ -49,7 +63,9 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reservation = Reservation::create($request->all());
+
+        return redirect()->route('reservations.edit', $reservation)->with('flash', 'Reservación creada correctamente');
     }
 
     /**
@@ -60,7 +76,7 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        return view('admin.reservations.show', compact('reservation'));
     }
 
     /**
@@ -71,7 +87,15 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        //
+        $companies = Company::allowed()->pluck('name', 'id');
+        $branches = Branch::allowed()->pluck('name', 'id');
+        $products = Product::allowed()->pluck('name', 'id');
+        $users = User::allowed()->pluck('name', 'id');
+
+        return view(
+            'admin.reservations.edit',
+            compact('reservation', 'companies', 'branches', 'products', 'users')
+        );
     }
 
     /**
@@ -83,17 +107,22 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $reservation->update($request->all());
+
+        return redirect()->route('reservations.edit', $reservation)->with('flash', 'Reservación actualizada correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reservation  $reservation
+     * @param  \App\Reservation $reservation
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+
+        return back()->with('flash', 'Reservación eliminada correctamente');
     }
 }

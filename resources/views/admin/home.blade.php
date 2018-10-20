@@ -1,14 +1,12 @@
 @extends('admin._layouts.main')
 
-@section('title', config('app.name').' | Home')
+@section('title', config('app.name').' | Inicio')
 
-@section('header', 'Home')
+@section('header', 'Inicio')
 
 @push('styles')
 
 @endpush
-
-{{-- @section('description', 'Página para gestión de citas') --}}
 
 @section('content')
     <div class="box box-primary">

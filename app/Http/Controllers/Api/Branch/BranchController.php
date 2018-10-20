@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api\Branch;
 
 use App\Branch;
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class BranchController extends Controller
+class BranchController extends ApiController
 {
     /**
      * Display a listing of the resource.

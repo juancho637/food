@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers\Api\Reservation;
 
+use App\Http\Controllers\Api\ApiController;
 use App\Reservation;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class ReservationController extends Controller
+class ReservationController extends ApiController
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('can:update,reservation')->only(['edit', 'update']);
+        $this->middleware('can:view,reservation')->only(['show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +27,10 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+
+        $reservations = Reservation::allowed()->get();
+
+        return $this->showAll($reservations);
     }
 
     /**
@@ -47,7 +62,9 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+
+
+        return $this->showOne($reservation);
     }
 
     /**

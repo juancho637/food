@@ -5,8 +5,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Branch::class, function (Faker $faker) {
     return [
-        'company_id' => Company::all()->random()->id,
-        'name' => $faker->sentence,
+        'name' => $faker->streetName,
         'address' => $faker->address,
     ];
 });

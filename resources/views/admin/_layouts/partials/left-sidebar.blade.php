@@ -20,17 +20,41 @@
             <!-- <li class="header">HEADER</li> -->
 
             <!-- Optionally, you can add icons to the links -->
-            <li {{ request()->is('admin/home') ? 'class=active' : '' }}>
+            <li {{ request()->is('admin') ? 'class=active' : '' }}>
                 <a href="{{ route('home') }}">
-                    <i class="fa fa-home"></i>
+                    <i class="fa fa-dashboard"></i>
                     <span>Inicio</span>
                 </a>
             </li>
+            @can('companies.index')
+                <li {{ request()->is('admin/companies*') ? 'class=active' : '' }}>
+                    <a href="{{ route('companies.index') }}">
+                        <i class="fa fa-building"></i>
+                        <span>Empresas</span>
+                    </a>
+                </li>
+            @endcan
             @can('branches.index')
             <li {{ request()->is('admin/branches*') ? 'class=active' : '' }}>
                 <a href="{{ route('branches.index') }}">
-                    <i class="fa fa-building"></i>
+                    <i class="fa fa-home"></i>
                     <span>Sucursales</span>
+                </a>
+            </li>
+            @endcan
+            @can('reservations.index')
+            <li {{ request()->is('admin/reservations*') ? 'class=active' : '' }}>
+                <a href="{{ route('reservations.index') }}">
+                    <i class="fa fa-book"></i>
+                    <span>Reservaciones</span>
+                </a>
+            </li>
+            @endcan
+            @can('products.index')
+            <li {{ request()->is('admin/products*') ? 'class=active' : '' }}>
+                <a href="{{ route('products.index') }}">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Productos</span>
                 </a>
             </li>
             @endcan
@@ -42,49 +66,14 @@
                 </a>
             </li>
             @endcan
-            {{-- <li class="treeview {{ request()->is('finances*') ? 'active' : '' }}">
-                <a href="#">
-                    <i class="fa fa-bar-chart"></i>
-                    <span>Finanzas</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+            @can('roles.index')
+            <li {{ request()->is('admin/roles*') ? 'class=active' : '' }}>
+                <a href="{{ route('roles.index') }}">
+                    <i class="fa fa-check"></i>
+                    <span>Roles</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li {{ request()->is('finances/invoices*') ? 'class=active' : '' }}>
-                        <a href="{{ route('invoices.index') }}">Facturas</a>
-                    </li>
-                    <li {{ request()->is('finances/deposits*') ? 'class=active' : '' }}>
-                        <a href="{{ route('deposits.index') }}">Depositos</a>
-                    </li>
-                    <li {{ request()->is('finances/quotations*') ? 'class=active' : '' }}>
-                        <a href="{{ route('quotations.index') }}">Cotizaciones</a>
-                    </li>
-                    <li {{ request()->is('finances/credits*') ? 'class=active' : '' }}>
-                        <a href="{{ route('credits.index') }}">Pago de créditos</a>
-                    </li>
-                    <li {{ request()->is('finances/expenses*') ? 'class=active' : '' }}>
-                        <a href="{{ route('expenses.index') }}">Gastos/Egresos</a>
-                    </li>
-                </ul>
-            </li> --}}
-            {{-- <li class="treeview {{ request()->is('reports*') ? 'active' : '' }}">
-              <a href="#">
-                <i class="fa fa-book"></i>
-                <span>Informes</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li {{ request()->is('admin/clients') ? 'class=active' : '' }}>
-                  <a href="{{ route('clients.index') }}">Clientes</a>
-                </li>
-                <li {{ request()->is('admin/products') ? 'class=active' : '' }}>
-                  <a href="{{ route('products.index') }}">Productos</a>
-                </li>
-              </ul>
-            </li> --}}
+            </li>
+            @endcan
         </ul>
         <!-- /.sidebar-menu -->
     </section>

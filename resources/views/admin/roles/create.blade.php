@@ -12,11 +12,12 @@
 
 @section('content')
     <div class="box box-primary">
-        <div class="box-header">
+        <div class="box-body">
+            {!! Form::open(['route' => 'roles.store']) !!}
 
-        </div>
-        <div class="box-body table-responsive">
+            @include('admin.roles.partials.form')
 
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

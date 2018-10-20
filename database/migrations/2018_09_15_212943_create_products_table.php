@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('stock');
             $table->string('type');
-            $table->string('day');
+            $table->string('day')->nullable();
             $table->timestamps();
 
             //Relations

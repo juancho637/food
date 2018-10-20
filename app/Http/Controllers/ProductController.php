@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Branch;
+use App\Company;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -14,11 +16,13 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission::products.index')->only('index');
-        $this->middleware('permission::products.create')->only(['create', 'store']);
-        $this->middleware('permission::products.show')->only('show');
-        $this->middleware('permission::products.edit')->only(['edit', 'update']);
-        $this->middleware('permission::products.destroy')->only('destroy');
+        $this->middleware('permission:products.index')->only('index');
+        $this->middleware('permission:products.create')->only(['create', 'store']);
+        $this->middleware('permission:products.show')->only('show');
+        $this->middleware('permission:products.edit')->only(['edit', 'update']);
+        $this->middleware('permission:products.destroy')->only('destroy');
+        $this->middleware('can:update,product')->only(['edit', 'update']);
+        $this->middleware('can:view,product')->only(['show']);
     }
 
     /**
@@ -28,7 +32,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = Product::allowed()->paginate();
 
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -38,7 +44,12 @@ class ProductController extends Controller
      */
     public function create()
     {
+        /*if (Auth::user()->company_id){
+        }*/
+        $companies = Company::allowed()->pluck('name', 'id');
+        $branches = Branch::allowed()->pluck('name', 'id');
 
+        return view('admin.products.create', compact('companies', 'branches'));
     }
 
     /**
@@ -49,7 +60,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $product = Product::create($request->all());
 
+        return redirect()->route('products.edit', $product)->with('flash', 'Producto creado correctamente');
     }
 
     /**
@@ -60,7 +73,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -71,7 +84,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $companies = Company::allowed()->pluck('name', 'id');
+        $branches = Branch::allowed()->pluck('name', 'id');
 
+        return view('admin.products.edit', compact('product', 'branches', 'companies'));
     }
 
     /**
@@ -83,17 +99,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $product->update($request->all());
 
+        return redirect()->route('products.edit', $product)->with('flash', 'Producto actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Product $product
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Product $product)
     {
+        $product->delete();
 
+        return back()->with('flash', 'Producto eliminado correctamente');
     }
 }

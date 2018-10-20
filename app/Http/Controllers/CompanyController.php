@@ -14,11 +14,11 @@ class CompanyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission::companies.index')->only('index');
-        $this->middleware('permission::companies.create')->only(['create', 'store']);
-        $this->middleware('permission::companies.show')->only('show');
-        $this->middleware('permission::companies.edit')->only(['edit', 'update']);
-        $this->middleware('permission::companies.destroy')->only('destroy');
+        $this->middleware('permission:companies.index')->only('index');
+        $this->middleware('permission:companies.create')->only(['create', 'store']);
+        $this->middleware('permission:companies.show')->only('show');
+        $this->middleware('permission:companies.edit')->only(['edit', 'update']);
+        $this->middleware('permission:companies.destroy')->only('destroy');
     }
 
     /**
@@ -28,7 +28,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::paginate();
+
+        return view('admin.companies.index', compact('companies'));
     }
 
     /**
@@ -38,7 +40,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.companies.create');
     }
 
     /**
@@ -49,7 +51,9 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $company = Company::create($request->all());
+
+        return redirect()->route('companies.edit', $company)->with('flash', 'Empresa creada correctamente');
     }
 
     /**
@@ -60,7 +64,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('admin.companies.show', compact('company'));
     }
 
     /**
@@ -71,7 +75,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('admin.companies.edit', compact('company'));
     }
 
     /**
@@ -83,17 +87,22 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $company->update($request->all());
+
+        return redirect()->route('companies.edit', $company)->with('flash', 'Empresa actualizada correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Company $company
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+
+        return back()->with('flash', 'Empresa eliminada correctamente');
     }
 }

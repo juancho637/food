@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Branch;
+use App\Company;
 use App\User;
+use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,11 +18,12 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission::users.index')->only('index');
-        $this->middleware('permission::users.create')->only(['create', 'store']);
-        $this->middleware('permission::users.show')->only('show');
-        $this->middleware('permission::users.edit')->only(['edit', 'update']);
-        $this->middleware('permission::users.destroy')->only('destroy');
+        $this->middleware('permission:users.index')->only('index');
+        $this->middleware('permission:users.create')->only(['create', 'store']);
+        $this->middleware('permission:users.show')->only('show');
+        $this->middleware('permission:users.edit')->only(['edit', 'update']);
+        $this->middleware('permission:users.destroy')->only('destroy');
+        $this->middleware('can:update,user')->only(['edit', 'update']);
     }
 
     /**
@@ -28,7 +33,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        $users = User::allowed()->paginate();
+
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -38,7 +45,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $companies = Company::allowed()->pluck('name', 'id');
+        $branches = Branch::allowed()->pluck('name', 'id');
+        $roles = Role::all();
+
+        return view('admin.users.create', compact('companies', 'branches', 'roles'));
     }
 
     /**
@@ -49,6 +60,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->isRole('su'))
+        {
+            $request['company_id'] = Auth::user()->company_id;
+        }
+        $user = User::create($request->all());
+
+        return redirect()->route('users.edit', $user)->with('flash', 'Usuario creado correctamente');
     }
 
     /**
@@ -59,6 +77,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -69,7 +88,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit');
+        $companies = Company::allowed()->pluck('name', 'id');
+        $branches = Branch::allowed()->pluck('name', 'id');
+        $roles = Role::all();
+
+        return view('admin.users.edit', compact('user', 'companies', 'branches', 'roles'));
     }
 
     /**
@@ -81,15 +104,27 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $user->update($request->all());
+
+        $user->roles()->detach();
+        if (!empty($request->roles)) {
+            $user->roles()->sync($request->roles);
+        }
+
+        return redirect()->route('users.edit', $user)->with('flash', 'Usuario actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\User $user
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(User $user)
     {
+        $user->delete();
+
+        return back()->with('flash', 'Usuario eliminado correctamente');
     }
 }

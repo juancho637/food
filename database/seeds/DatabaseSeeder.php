@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
         User::truncate();
         Branch::truncate();
         Product::truncate();
-        Client::truncate();
         Reservation::truncate();
 
         Permission::flushEventListeners();
@@ -34,15 +33,13 @@ class DatabaseSeeder extends Seeder
         User::flushEventListeners();
         Branch::flushEventListeners();
         Product::flushEventListeners();
-        Client::flushEventListeners();
         Reservation::flushEventListeners();
 
         $this->call(PermissionsTableSeeder::class);
         $this->call(CompaniesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
-        $this->call(BranchesTableSeeder::class);
-        $this->call(ProductsTableSeeder::class);
-        $this->call(ClientsTableSeeder::class);
-        $this->call(ReservationsTableSeeder::class);
+        //$this->call(BranchesTableSeeder::class);
+        //$this->call(ProductsTableSeeder::class);
+        //$this->call(ReservationsTableSeeder::class);
     }
 }

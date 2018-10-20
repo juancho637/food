@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Caffeinated\Shinobi\Models\Permission;
 use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,11 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission::roles.index')->only('index');
-        $this->middleware('permission::roles.create')->only(['create', 'store']);
-        $this->middleware('permission::roles.show')->only('show');
-        $this->middleware('permission::roles.edit')->only(['edit', 'update']);
-        $this->middleware('permission::roles.destroy')->only('destroy');
+        $this->middleware('permission:roles.index')->only('index');
+        $this->middleware('permission:roles.create')->only(['create', 'store']);
+        $this->middleware('permission:roles.show')->only('show');
+        $this->middleware('permission:roles.edit')->only(['edit', 'update']);
+        $this->middleware('permission:roles.destroy')->only('destroy');
     }
 
     /**
@@ -28,7 +29,9 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $roles = Role::paginate();
 
+        return view('admin.roles.index', compact('roles'));
     }
 
     /**
@@ -38,7 +41,9 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $permissions = Permission::all();
 
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**
@@ -49,7 +54,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $role = Role::create($request->all());
 
+        if (!empty($request->permissions)) {
+            $role->permissions()->sync($request->permissions);
+        }
+
+        return redirect()->route('roles.edit', $role)->with('flash', 'Rol creado correctamente');
     }
 
     /**
@@ -60,7 +71,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-
+        return view('admin.roles.show', compact('role'));
     }
 
     /**
@@ -71,7 +82,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        $permissions = Permission::all();
 
+        return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -83,7 +96,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        $role->update($request->all());
 
+        if (!empty($request->permissions)) {
+            $role->permissions()->sync($request->permissions);
+        }
+
+        return redirect()->route('roles.edit', $role)->with('flash', 'Rol actualizado correctamente');
     }
 
     /**
@@ -91,9 +110,12 @@ class RoleController extends Controller
      *
      * @param  Role $role
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Role $role)
     {
+        $role->delete();
 
+        return back()->with('flash', 'Rol eliminado correctamente');
     }
 }

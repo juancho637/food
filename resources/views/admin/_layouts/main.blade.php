@@ -96,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.content-wrapper -->
 
         <!-- Main Footer -->
-        {{-- @include('layouts.partials.footer') --}}
+        {{-- @include('layouts._partials.footer') --}}
 
         <!-- Control Sidebar -->
         @include('admin._layouts.partials.right-sidebar')

@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api\Client;
+namespace App\Http\Controllers\Api\User;
 
-use App\Client;
+use App\Reservation;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ClientController extends Controller
+class UserReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
         //
     }
@@ -23,7 +24,7 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
         //
     }
@@ -34,7 +35,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         //
     }
@@ -42,10 +43,10 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Client  $client
+     * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show(User $user, Reservation $reservation)
     {
         //
     }
@@ -53,10 +54,10 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Client  $client
+     * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(User $user, Reservation $reservation)
     {
         //
     }
@@ -65,10 +66,10 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Client  $client
+     * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, User $user, Reservation $reservation)
     {
         //
     }
@@ -76,10 +77,10 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Client  $client
+     * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(User $user, Reservation $reservation)
     {
         //
     }
