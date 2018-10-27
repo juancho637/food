@@ -15,7 +15,7 @@ class CompanyController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->showAll(Company::all());
     }
 
     /**
@@ -47,7 +47,7 @@ class CompanyController extends ApiController
      */
     public function show(Company $company)
     {
-        //
+        return $this->showOne($company);
     }
 
     /**

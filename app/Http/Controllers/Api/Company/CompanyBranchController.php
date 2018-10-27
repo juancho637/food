@@ -13,11 +13,11 @@ class CompanyBranchController extends ApiController
      * Display a listing of the resource.
      *
      * @param Company $company
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function index(Company $company)
     {
-        //
+        return $this->showAll($company->branches()->get());
     }
 
     /**

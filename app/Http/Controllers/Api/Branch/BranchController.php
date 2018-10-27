@@ -15,7 +15,7 @@ class BranchController extends ApiController
      */
     public function index()
     {
-        //
+        return $this->showAll(Branch::all());
     }
 
     /**
@@ -47,7 +47,7 @@ class BranchController extends ApiController
      */
     public function show(Branch $branch)
     {
-        //
+        return $this->showOne($branch);
     }
 
     /**

@@ -27,10 +27,7 @@ class ReservationController extends ApiController
      */
     public function index()
     {
-
-        $reservations = Reservation::allowed()->get();
-
-        return $this->showAll($reservations);
+        return $this->showAll(Reservation::allowed()->get());
     }
 
     /**
@@ -62,8 +59,6 @@ class ReservationController extends ApiController
      */
     public function show(Reservation $reservation)
     {
-
-
         return $this->showOne($reservation);
     }
 
@@ -93,8 +88,9 @@ class ReservationController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reservation  $reservation
+     * @param  \App\Reservation $reservation
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Reservation $reservation)
     {
