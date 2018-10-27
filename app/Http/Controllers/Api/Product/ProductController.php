@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\Product;
 
+use App\Http\Controllers\Api\ApiController;
 use App\Product;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class ProductController extends Controller
+class ProductController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return $this->showAll(Product::all());
     }
 
     /**
@@ -47,7 +47,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return $this->showOne($product);
     }
 
     /**

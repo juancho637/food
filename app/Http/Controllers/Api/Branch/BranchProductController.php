@@ -13,11 +13,11 @@ class BranchProductController extends ApiController
      * Display a listing of the resource.
      *
      * @param Branch $branch
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function index(Branch $branch)
     {
-        //
+        return $this->showAll($branch->products()->get());
     }
 
     /**
