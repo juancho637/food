@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{config('app.name')}} | Log in</title>
-    <!-- Tell the browser to be responsive to screen width -->
+    <link rel="icon" href="{{ asset('/plugins/adminLTE/img/favicon_food.png') }}">
+    <!-- Tell the browser to be responsive to screen width -->    
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{ asset('/plugins/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -95,8 +96,9 @@
         </form>
 
         <br>
-        <a href="{{ route('login') }}" class="text-center">Ya tienes una cuenta?</a>
-
+        <div style="text-align:center">
+         <a href="{{ route('login') }}" class="text-center">¿Ya tienes una cuenta?</a>
+        </div>
     </div>
     <!-- /.login-box-body -->
 </div>

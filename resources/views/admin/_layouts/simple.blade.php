@@ -13,7 +13,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
+  <!-- Icono del Navegador -->
+  <link rel="icon" href="{{ asset('/plugins/adminLTE/img/favicon_food.png') }}">
   <!-- Bootstrap style -->
   <link rel="stylesheet" href="{{ asset('/plugins/bootstrap/dist/css/bootstrap.min.css') }}">
   <!-- Font Awesome -->

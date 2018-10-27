@@ -6,11 +6,13 @@
 
 @push('styles')
 
+
 @endpush
 
 @section('description', 'Página para gestión de productos')
 
 @section('content')
+
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">Productos</h3>
