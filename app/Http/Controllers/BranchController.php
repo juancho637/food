@@ -57,6 +57,14 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'company_id' => 'required',
+            'name' => 'required',
+            'address' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
+        ]);
+
         if (!Auth::user()->isRole('su'))
         {
             $request['company_id'] = Auth::user()->company_id;

@@ -14,6 +14,8 @@ class Branch extends Model
         'company_id',
         'name',
         'address',
+        'longitude',
+        'latitude',
     ];
 
     /**

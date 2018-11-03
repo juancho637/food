@@ -18,6 +18,8 @@ class CreateBranchesTable extends Migration
             $table->integer('company_id')->unsigned();
             $table->string('name');
             $table->string('address');
+            $table->double('longitude');
+            $table->double('latitude');
             $table->timestamps();
 
             //Relations
