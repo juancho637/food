@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f190b48-1994-41b7-9393-1b6ea2cc68e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Branch.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Branch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BranchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BranchController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/BranchFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/BranchFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2018_09_15_212807_create_branches_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_09_15_212807_create_branches_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/branches/partials/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/branches/partials/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/doctrine/inflector/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/doctrine/inflector/.gitattributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/doctrine/inflector/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/doctrine/inflector/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/doctrine/inflector/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/doctrine/inflector/.travis.yml" afterDir="false" />
@@ -72,7 +67,7 @@
           <entry key="example" value="3" />
           <entry key="gitignore" value="6" />
           <entry key="json" value="2" />
-          <entry key="php" value="745" />
+          <entry key="php" value="746" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -80,7 +75,7 @@
           <entry key=".env file" value="11" />
           <entry key="Blade" value="272" />
           <entry key="JSON" value="2" />
-          <entry key="PHP" value="473" />
+          <entry key="PHP" value="474" />
           <entry key="PLAIN_TEXT" value="8" />
         </counts>
       </usages-collector>
@@ -91,14 +86,14 @@
           <entry key="env" value="16" />
           <entry key="example" value="4" />
           <entry key="gitignore" value="16" />
-          <entry key="php" value="11749" />
+          <entry key="php" value="11752" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="20" />
           <entry key="Blade" value="4208" />
-          <entry key="PHP" value="7541" />
+          <entry key="PHP" value="7544" />
           <entry key="PLAIN_TEXT" value="20" />
         </counts>
       </usages-collector>
@@ -124,11 +119,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/branches/partials/form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="255">
               <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/app.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="67" column="19" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -217,7 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/companies/create.blade.php" />
@@ -268,6 +271,7 @@
         <option value="$PROJECT_DIR$/database/factories/BranchFactory.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BranchController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/branches/partials/form.blade.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
       </list>
     </option>
   </component>
@@ -448,6 +452,11 @@
             <path>
               <item name="food" type="b2602c69:ProjectViewProjectNode" />
               <item name="food" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="food" type="b2602c69:ProjectViewProjectNode" />
+              <item name="food" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -619,12 +628,12 @@
       <workItem from="1540301736486" duration="407000" />
       <workItem from="1540340541434" duration="4385000" />
       <workItem from="1540739713141" duration="152000" />
-      <workItem from="1541275882682" duration="939000" />
+      <workItem from="1541275882682" duration="1131000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142095000" />
+    <option name="totallyTimeSpent" value="142287000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -643,7 +652,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.6217765" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24109589" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -658,13 +667,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Policies/ReservationPolicy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="32" column="58" lean-forward="true" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Product.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
@@ -987,8 +989,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/branches/partials/form.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="255">
           <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="67" column="19" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
         </state>
       </provider>
     </entry>
